@@ -7,28 +7,42 @@ public class ControlPlayer : MonoBehaviour
     public float horizontalInput;
     public float verticalInput; 
     public float speed = 0.1f;
-    public float jumpHeight = 1.0f;
     private Rigidbody rigid;
-    public float jumpH;
+    private float jumpHeight;
+    public bool touchGround;
+    private bool jumpInput;
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        jumpH = 5.0f;
+        jumpHeight = 5.0f;
     }
 
+
+    void PreUpdate()
+    {
+        jumpInput = Input.GetKeyDown(KeyCode.Space);
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-        transform.Translate(Vector3.forward * verticalInput * speed);
-        transform.Translate(Vector3.right * horizontalInput * speed);
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && touchGround)
         {
-            rigid.AddForce(Vector3.up * jumpH, ForceMode.VelocityChange);
+            rigid.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+            touchGround = false;
         }
+        transform.Translate(Vector3.forward * verticalInput * speed);
+        transform.Translate(Vector3.right * horizontalInput * speed);       
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        touchGround = false;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        touchGround = true;
     }
 }

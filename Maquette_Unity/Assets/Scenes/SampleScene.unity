@@ -440,7 +440,6 @@ GameObject:
   - component: {fileID: 1763478624}
   - component: {fileID: 1763478623}
   - component: {fileID: 1763478622}
-  - component: {fileID: 1763478621}
   - component: {fileID: 1763478620}
   - component: {fileID: 1763478626}
   - component: {fileID: 1763478625}
@@ -468,21 +467,7 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   speed: 0.1
-  jumpHeight: 1
---- !u!136 &1763478621
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763478619}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  touchGround: 0
 --- !u!23 &1763478622
 MeshRenderer:
   m_ObjectHideFlags: 0
