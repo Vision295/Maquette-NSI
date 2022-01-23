@@ -8,10 +8,13 @@ public class ControlPlayer : MonoBehaviour
     public float verticalInput; 
     public float speed = 0.1f;
     public float jumpHeight = 1.0f;
+    private Rigidbody rigid;
+    public float jumpH;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigid = GetComponent<Rigidbody>();
+        jumpH = 5.0f;
     }
 
     // Update is called once per frame
@@ -25,7 +28,7 @@ public class ControlPlayer : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.Translate(Vector3.up * jumpHeight);
+            rigid.AddForce(Vector3.up * jumpH, ForceMode.VelocityChange);
         }
     }
 }
